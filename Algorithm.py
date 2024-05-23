@@ -91,7 +91,7 @@ data.label.loc[
     (data['label']=="TIME") | 
     (data['label']=="url") | 
     (data['label']=="hash")
-] = "NEED_ATTENTION"
+] = "NeedChecking"
 
 print(data.head())
 
@@ -148,21 +148,9 @@ print('Shape of data tensor Y:', Y.shape)
 # split the data into training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(X,Y, test_size = 0.20, random_state = 42)
 
-# model building and configuration
-model=Sequential()
-model.add(Embedding(MAX_NB_WORDS,EMBEDDING_DIM))
-model.add(LSTM(150,dropout=0.2,recurrent_dropout=0.2))
-model.add(Dense(50))
-model.add(Dropout(0.2))
-model.add(Dense(8,activation='softmax'))
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.save_weights("model.weights.h5")
-print("Saved model to disk")
-
-# model training
-epochs=10
-batch_size=64
-history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.2,callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
+# load model
+from tensorflow.keras.models import load_model
+model = load_model('models/model.h5')
 
 print(model.summary())
 
@@ -175,13 +163,6 @@ predictions = model.predict(x_test)
 for i in range(5):
     print('Prediction: {}'.format(predictions[i]))
     print('Actual: {}'.format(y_test[i]))
-
-import matplotlib.pyplot as plt
-plt.title('Loss')
-plt.plot(history.history['loss'], label='train')
-plt.plot(history.history['val_loss'], label='test')
-plt.legend()
-plt.show()
 
 # predicts probabilities of each label for each row in the test set
 # predictions = model.predict(x_test)
@@ -207,23 +188,9 @@ print('Confusion Matrix:', cm)
 
 classes = np.arange(len(cm))
 
-plt.figure(figsize=(12, 10))
+plt.figure(figsize=(14, 14))
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
 plt.title('Confusion Matrix')
 plt.xlabel('Predicted Label')
 plt.ylabel('True Label')
 plt.show()
-
-# print accuracy of the model
-import matplotlib.pyplot as plt
-
-def plot_graphs(history, string):
-  plt.plot(history.history[string])
-  plt.plot(history.history['val_'+string])
-  plt.xlabel("Epochs")
-  plt.ylabel(string)
-  plt.legend(['train', 'test'])
-  plt.show()
-  
-plot_graphs(history, "accuracy")
-plot_graphs(history, "loss")
