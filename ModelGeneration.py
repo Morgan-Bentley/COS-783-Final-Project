@@ -25,7 +25,7 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 
-df = pd.read_csv('possible_datasets/cyber-threat-intelligence_all.csv')
+df = pd.read_csv('Cyberthreat-traffic-detection-dataset/cyber-threat-intelligence_all.csv')
 
 print(df.head())
 
