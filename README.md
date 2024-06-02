@@ -39,4 +39,9 @@ Topic 2:<br>
   - ROC-AUC Score
   - Feature Importance
 
+### Other Contributions:
+
+- **arffToCSV.py**
+  - As the Phishing dataset was in `.arff` format, a solution was found online to translate the `.arff` file to a `.csv` file format for easier implementation. [ARFF to CSV Help Site](https://stackoverflow.com/questions/55653131/converting-arff-file-to-csv-using-python) 
+
 ## Morgan Bentley 18103007
