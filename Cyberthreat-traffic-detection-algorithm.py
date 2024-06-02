@@ -150,7 +150,7 @@ x_train, x_test, y_train, y_test = train_test_split(X,Y, test_size = 0.20, rando
 
 # load model
 from tensorflow.keras.models import load_model
-model = load_model('Cyberthreat-traffic-detection-dataset-model/model.h5')
+model = load_model('Cyberthreat-traffic-detection-model/model.h5')
 
 print(model.summary())
 
