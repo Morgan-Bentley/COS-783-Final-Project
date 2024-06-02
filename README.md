@@ -3,8 +3,40 @@ Topic 2:<br>
  Metadata Analysis: AI techniques can assist in analyzing large volumes of metadata by automating pattern recognition, anomaly detection, and correlation analysis. AI algorithms can identify suspicious patterns or outliers that may indicate important evidence.
 
 ## Edwin Sen-Hong Chang 20424575
-Implementation of various anomaly detection models:
-- Credit Card Fraud - The dataset that was worked on was on credit card transactions made by European cardholders in September 2007. Due to confidentiality issues, features are anonymized. This gives us a dataset of unlabeled data which will fall under unsupervised learning. We made use of Isolation Forest module that exists within the Scikit-Learn library in Python to do the anomaly detection.
-- Phishing URLs - The dataset is of URLs that may or may not be classified as a Phishing site. having_IP_Address, URL_Length,Shortining_Service, having_At_Symbol, double_slash_redirecting, Prefix_Suffix, having_Sub_Domain, SSLfinal_State, Domain_registeration_length, Favicon, port, HTTPS_token, Request_URL, URL_of_Anchor, Links_in_tags, SFH, Submitting_to_email, Abnormal_URL, Redirect, on_mouseover, RightClick, popUpWidnow, Iframe, age_of_domain, DNSRecord, web_traffic, Page_Rank, Google_Index, Links_pointing_to_page and Statistical_report are the features of the dataset. The anomaly detection was implemented with supervised learning, using Random Forest Classifiers provided by Scikit-Learn library in Python.
+### Anomaly Detection Models Implemented:
+
+#### 1. Credit Card Fraud Detection
+- **Dataset:** The dataset consists of credit card transactions made by European cardholders in September 2007. Due to confidentiality issues, features are anonymized.
+- **Methodology:** This is an unsupervised learning problem where we used the Isolation Forest algorithm from the Scikit-Learn library in Python to detect anomalies (fraudulent transactions).
+- **Dataset Source:** [Credit Card Fraud Dataset](https://www.kaggle.com/code/samkirkiles/credit-card-fraud/data) (Kaggle)
+
+#### 2. Phishing URLs Detection
+- **Dataset:** The dataset contains URLs that may or may not be classified as phishing sites. Features include `having_IP_Address`, `URL_Length`, `Shortining_Service`, `having_At_Symbol`, etc.
+- **Methodology:** This is a supervised learning problem where we used the Random Forest Classifier from the Scikit-Learn library in Python to detect phishing URLs.
+- **Dataset Source:** [Phishing URLs Dataset](https://archive.ics.uci.edu/dataset/327/phishing+websites)
+
+### Implementation Details:
+
+1. **Credit Card Fraud Detection:**
+   - **Preprocessing:** Data cleaning, handling missing values, and feature scaling.
+   - **Model Training:** Isolation Forest for anomaly detection.
+   - **Evaluation:** Confusion matrix, classification report, ROC-AUC score.
+
+2. **Phishing URLs Detection:**
+   - **Preprocessing:** Data cleaning, handling missing values, and feature scaling.
+   - **Model Training:** Random Forest Classifier for anomaly detection.
+   - **Evaluation:** Confusion matrix, classification report, ROC-AUC score, feature importance.
+
+### Results and Evaluation:
+
+- **Credit Card Fraud Detection:**
+  - Precision, Recall, F1-Score
+  - ROC-AUC Score
+  - Confusion Matrix
+
+- **Phishing URLs Detection:**
+  - Precision, Recall, F1-Score
+  - ROC-AUC Score
+  - Feature Importance
 
 ## Morgan Bentley 18103007

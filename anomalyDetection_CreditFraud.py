@@ -2,10 +2,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, precision_recall_curve
 from sklearn.model_selection import train_test_split
+from sklearn.inspection import permutation_importance
+
+# Create results directory
+results_dir = 'creditResults'
+os.makedirs(results_dir, exist_ok=True)
 
 # Load dataset
 data = pd.read_csv('creditcard.csv')
@@ -18,18 +24,21 @@ print(data.describe())
 plt.figure(figsize=(6,4))
 sns.countplot(x='Class', data=data)
 plt.title('Class Distribution')
-plt.show()
+plt.savefig(os.path.join(results_dir, 'class_distribution.png'))
+plt.close()
 
 # Visualize data distribution
 data.hist(figsize=(20, 20), bins=50)
-plt.show()
+plt.savefig(os.path.join(results_dir, 'data_distribution.png'))
+plt.close()
 
 # Correlation matrix to understand relationships
 corr_matrix = data.corr()
 plt.figure(figsize=(12,10))
 sns.heatmap(corr_matrix, annot=False, cmap='coolwarm')
 plt.title('Correlation Matrix')
-plt.show()
+plt.savefig(os.path.join(results_dir, 'correlation_matrix.png'))
+plt.close()
 
 # Preprocess data
 data = data.dropna()  # Drop missing values
@@ -73,7 +82,8 @@ sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues')
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.title('Confusion Matrix')
-plt.show()
+plt.savefig(os.path.join(results_dir, 'confusion_matrix.png'))
+plt.close()
 
 # Additional Evaluation Metrics
 roc_auc = roc_auc_score(y_test, y_pred_test)
@@ -84,11 +94,10 @@ plt.plot(recall, precision, marker='.')
 plt.xlabel('Recall')
 plt.ylabel('Precision')
 plt.title('Precision-Recall Curve')
-plt.show()
+plt.savefig(os.path.join(results_dir, 'precision_recall_curve.png'))
+plt.close()
 
 # Feature importance using permutation importance
-from sklearn.inspection import permutation_importance
-
 perm_importance = permutation_importance(model, X_test, y_test, n_repeats=10, random_state=42, scoring='accuracy')
 sorted_idx = perm_importance.importances_mean.argsort()
 
@@ -96,4 +105,5 @@ plt.figure(figsize=(12,6))
 plt.barh(np.array(features.columns)[sorted_idx], perm_importance.importances_mean[sorted_idx])
 plt.xlabel("Permutation Importance")
 plt.title('Feature Importance (Permutation Importance)')
-plt.show()
+plt.savefig(os.path.join(results_dir, 'feature_importance.png'))
+plt.close()

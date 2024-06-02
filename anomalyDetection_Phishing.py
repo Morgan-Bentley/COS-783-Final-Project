@@ -2,11 +2,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, precision_recall_curve
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.inspection import permutation_importance
+
+# Create results directory
+results_dir = 'phishingResults'
+os.makedirs(results_dir, exist_ok=True)
 
 # Load dataset
 data = pd.read_csv('Training Dataset.csv')
@@ -17,15 +22,19 @@ print(data.describe())
 
 # Visualize data distribution
 data.hist(figsize=(15, 10))
-plt.show()
+plt.savefig(os.path.join(results_dir, 'data_distribution.png'))
+plt.close()
 
 # Preprocess data
 data = data.dropna()
 
 # Check for correlations
 corr_matrix = data.corr()
+plt.figure(figsize=(12, 10))
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
-plt.show()
+plt.title('Correlation Matrix')
+plt.savefig(os.path.join(results_dir, 'correlation_matrix.png'))
+plt.close()
 
 # Split features and target
 features = data.drop('Result', axis=1)
@@ -69,21 +78,26 @@ print("Confusion Matrix")
 print(conf_matrix)
 
 # Plot Confusion Matrix
+plt.figure(figsize=(6, 4))
 sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues')
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
-plt.show()
+plt.title('Confusion Matrix')
+plt.savefig(os.path.join(results_dir, 'confusion_matrix.png'))
+plt.close()
 
 # Additional Evaluation Metrics
 roc_auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
 print(f"ROC-AUC Score: {roc_auc}")
 
 precision, recall, _ = precision_recall_curve(y_test, model.predict_proba(X_test)[:, 1])
+plt.figure(figsize=(6, 4))
 plt.plot(recall, precision, marker='.')
 plt.xlabel('Recall')
 plt.ylabel('Precision')
 plt.title('Precision-Recall Curve')
-plt.show()
+plt.savefig(os.path.join(results_dir, 'precision_recall_curve.png'))
+plt.close()
 
 # Feature Importance
 importances = model.feature_importances_
@@ -91,16 +105,21 @@ indices = np.argsort(importances)[::-1]
 feature_names = features.columns
 
 # Plot Feature Importances
-plt.figure()
+plt.figure(figsize=(12, 6))
 plt.title("Feature Importances")
 plt.bar(range(features.shape[1]), importances[indices], align="center")
 plt.xticks(range(features.shape[1]), feature_names[indices], rotation=90)
 plt.xlim([-1, features.shape[1]])
-plt.show()
+plt.savefig(os.path.join(results_dir, 'feature_importances.png'))
+plt.close()
 
 # Permutation Importance for interpretability
 perm_importance = permutation_importance(model, X_test, y_test, n_repeats=10, random_state=42)
 sorted_idx = perm_importance.importances_mean.argsort()
+
+plt.figure(figsize=(12, 6))
 plt.barh(feature_names[sorted_idx], perm_importance.importances_mean[sorted_idx])
 plt.xlabel("Permutation Importance")
-plt.show()
+plt.title('Feature Importance (Permutation Importance)')
+plt.savefig(os.path.join(results_dir, 'permutation_importance.png'))
+plt.close()
