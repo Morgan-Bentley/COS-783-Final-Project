@@ -45,3 +45,23 @@ Topic 2:<br>
   - As the Phishing dataset was in `.arff` format, a solution was found online to translate the `.arff` file to a `.csv` file format for easier implementation. [ARFF to CSV Help Site](https://stackoverflow.com/questions/55653131/converting-arff-file-to-csv-using-python) 
 
 ## Morgan Bentley 18103007
+### Anomaly Detection Models Implemented:
+
+#### 1. Cyber Threat Detection and Diagnosis from network traffic
+- **Dataset:** The dataset contains a collection of data for detecting, diagnosing and mitigating cyber threats using network traffic data
+- **Methodology:** This is an unsupervised learning problem where we utilized the Isolation Forest algorithm from the Scikit-Learn library in Python to detect anomalies (fraudulent transactions). For tis problem we used Long Short-Term Memory  networks, a type of Recurrent Neural Network (RNN) architecture that is designed to capture long-term dependencies in sequences of data. Libraries utilized are tensoflow and scikit learn.
+- **Dataset Source:** [Cyber Threat Dataset: Network, Text & Relation](https://www.kaggle.com/datasets/ramoliyafenil/text-based-cyber-threat-detection/data) (Kaggle)
+
+### Implementation Details:
+
+1. **Cyber Threat Detection and Diagnosis from network traffic:**
+   - **Preprocessing:** Data cleaning, all unlabeled elements were labeled benign, all NaN values replaced with 0.
+   - **Model Training:** The model is compiled using the categorical cross-entropy loss function, the Adam optimizer, and accuracy as the metric. It is trained for 10 epochs (iterations) with a batch size of 64, and 20% of the training data is set aside for validation. An EarlyStopping callback stops training if the validation loss doesn't improve for 3 epochs (iterations), helping to prevent overfitting and ensuring the model generalizes well.
+   - **Evaluation:** To evaluate the model We used an accuracy function and a loss function over each iteration. A confusion matrix to quanttify correct/incorrect classifications
+
+### Results and Evaluation:
+
+- **Cyber Threat Detection and Diagnosis from network traffic:**
+  - Accuracy
+  - Loss function
+  - Confusion Matrix
