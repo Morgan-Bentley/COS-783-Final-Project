@@ -222,7 +222,7 @@ import matplotlib.pyplot as plt
 def plot_graphs(history, string):
   plt.plot(history.history[string])
   plt.plot(history.history['val_'+string])
-  plt.xlabel("Epochs")
+  plt.xlabel("Iteration")
   plt.ylabel(string)
   plt.legend(['train', 'test'])
   plt.show()
