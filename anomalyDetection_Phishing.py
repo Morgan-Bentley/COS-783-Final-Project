@@ -45,7 +45,7 @@ scaler = StandardScaler()
 features_scaled = scaler.fit_transform(features)
 
 # Train/test split
-X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.2, random_state=16)
 
 # Hyperparameter tuning for Random Forest
 param_grid = {
@@ -53,7 +53,7 @@ param_grid = {
     'max_depth': [None, 10, 20, 30],
     'min_samples_split': [2, 5, 10]
 }
-grid_search = GridSearchCV(RandomForestClassifier(random_state=42), param_grid, cv=3, scoring='accuracy')
+grid_search = GridSearchCV(RandomForestClassifier(random_state=16), param_grid, cv=3, scoring='accuracy')
 grid_search.fit(X_train, y_train)
 best_model = grid_search.best_estimator_
 
