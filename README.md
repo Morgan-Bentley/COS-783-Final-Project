@@ -6,7 +6,7 @@ Topic 2:<br>
 ### Anomaly Detection Models Implemented:
 
 #### 1. Credit Card Fraud Detection
-- **Dataset:** The dataset consists of credit card transactions made by European cardholders in September 2007. Due to confidentiality issues, features are anonymized.
+- **Dataset:** The dataset consists of credit card transactions made by European cardholders in September 2007. Due to confidentiality issues, features are anonymized. This dataset is also not available as it is too big of a file. If needed go to the Dataset Source to download.
 - **Methodology:** This is an unsupervised learning problem where we utilized the Isolation Forest algorithm from the Scikit-Learn library in Python to detect anomalies (fraudulent transactions).
 - **Dataset Source:** [Credit Card Fraud Dataset](https://www.kaggle.com/code/samkirkiles/credit-card-fraud/data) (Kaggle)
 
