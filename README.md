@@ -11,7 +11,7 @@ Topic 2:<br>
 - **Dataset Source:** [Credit Card Fraud Dataset](https://www.kaggle.com/code/samkirkiles/credit-card-fraud/data) (Kaggle)
 
 #### 2. Phishing URLs Detection
-- **Dataset:** The dataset contains URLs that may or may not be classified as phishing sites. Features include `having_IP_Address`, `URL_Length`, `Shortining_Service`, `having_At_Symbol`, etc.
+- **Dataset:** The dataset contains URLs that may or may not be classified as phishing sites. Features include `having_IP_Address`, `URL_Length`, `HTTPS`, `SSLfinal_State,Domain_registeration_length`, etc.
 - **Methodology:** This is a supervised learning problem where we used the Random Forest Classifier from the Scikit-Learn library in Python to detect phishing URLs.
 - **Dataset Source:** [Phishing URLs Dataset](https://archive.ics.uci.edu/dataset/327/phishing+websites)
 
