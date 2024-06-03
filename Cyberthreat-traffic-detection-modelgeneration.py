@@ -29,7 +29,7 @@ df = pd.read_csv('Cyberthreat-traffic-detection-dataset/cyber-threat-intelligenc
 
 print(df.head())
 
-print(df.info())
+# print(df.info())
 
 # Drop the Unnamed: 0 column
 df = df.drop(labels='Unnamed: 0', axis=1)
@@ -93,7 +93,7 @@ data.label.loc[
     (data['label']=="hash")
 ] = "NEED_ATTENTION"
 
-print(data.head())
+# print(data.head())
 
 print(data['label'].value_counts())
 
@@ -178,19 +178,19 @@ for i in range(5):
     print('Prediction: {}'.format(predictions[i]))
     print('Actual: {}'.format(y_test[i]))
 
-import matplotlib.pyplot as plt
-plt.title('Loss')
-plt.plot(history.history['loss'], label='train')
-plt.plot(history.history['val_loss'], label='test')
-plt.legend()
-plt.show()
+# import matplotlib.pyplot as plt
+# plt.title('Loss')
+# plt.plot(history.history['loss'], label='train')
+# plt.plot(history.history['val_loss'], label='test')
+# plt.legend()
+# plt.show()
 
 # predicts probabilities of each label for each row in the test set
 # predictions = model.predict(x_test)
 # print('predictions:', predictions)
 # assigns the label with the highest probability to y_pred
 y_pred = np.argmax(model.predict(x_test), axis=1)
-print('Y_pred:', y_pred)
+# print('Y_pred:', y_pred)
 
 # confusion matrix to evaluate the model labeling capability
 import numpy as np
